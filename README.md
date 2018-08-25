@@ -1,5 +1,6 @@
 # calendar-sync
 Section I
+
 You will need to first create an "If This Then That" Account.
 •	After creating an account, click on your name in the upper right hand corner and choose New Applet.
 •	Click on the "This" hyperlink and in the search services box type in Todoist
