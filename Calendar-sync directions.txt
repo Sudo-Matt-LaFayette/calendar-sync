@@ -1,27 +1,28 @@
 Section I
 You will need to first create an "If This Then That" Account.
 
-ï	After creating an account, click on your name in the upper right hand corner and choose New Applet.
-ï	Click on the "This" hyperlink and in the search services box type in Todoist
-ï	Click on Todoist, then pick ìNew task createdî
-ï	Pick your selected project (I choose Inbox) and click on create trigger
-ï	Now click on the "That" hyperlink and in the search services box type in google calendar
-ï	Click on Google Calendar and then choose "Create a detailed Calendar event"
-ï	Choose the correct calender and click create action
-ï	Click on Add ingredient under both start and end time and select Due Date
-ï	For All day select Yes
-ï	For Title you will want to ONLY use the TaskContent ingredient, delete ìNew Task Created in Todoist ñì
-ï	then click on create action
+‚Ä¢	After creating an account, click on your name in the upper right hand corner and choose New Applet.
+‚Ä¢	Click on the "This" hyperlink and in the search services box type in Todoist
+‚Ä¢	Click on Todoist, then pick ‚ÄúNew task created‚Äù
+‚Ä¢	Pick your selected project (I choose Inbox) and click on create trigger
+‚Ä¢	Now click on the "That" hyperlink and in the search services box type in google calendar
+‚Ä¢	Click on Google Calendar and then choose "Create a detailed Calendar event"
+‚Ä¢	Choose the correct calender and click create action
+‚Ä¢	Click on Add ingredient under both start and end time and select Due Date
+‚Ä¢	For All day select Yes
+‚Ä¢	For Title you will want to ONLY use the TaskContent ingredient, delete ‚ÄúNew Task Created in Todoist ‚Äì‚Äú
+‚Ä¢	then click on create action
 
 Section II
 Now we will begin setting up the raspberry pi. 
-ï	Download and install the Raspberry Pi Desktop at https://www.raspberrypi.org/downloads/
+‚Ä¢	Download and install the Raspberry Pi Desktop at https://www.raspberrypi.org/downloads/
 Open the terminal and run the following commands to create our API directory get access to the todoist API
 $ cd ~
 $ sudo mkdir API
 $ cd API
 $ sudo git clone git@github.com:Doist/todoist-python.git ; cd todoist-python
-$ sudo pip install -e
+$ sudo pip install -e .
+(Yes the period is included, this makes the "pip install -e" run inside the current directory)
 (Source: https://github.com/Doist/todoist-python)
 
 Once that is done run the following command to get access to the google calendar API
@@ -29,25 +30,25 @@ $ sudo pip install --upgrade google-api-python-client oauth2client
 (Source: https://developers.google.com/calendar/quickstart/python)
 
 After the precceeding commands have been run, you will need setup authentication for Google Calendar.
-ï	Go to https://developers.google.com/calendar/quickstart/python click on Enable the Google Calendar API
-ï	Click the dropdown and select ì+ Create new projectî, give it a name and click next
-ï	Now select a Product name and click next
-ï	You will need to next click on ìDownload client configurationî to get the ìcredentials.jsonî
-ï	This file will need to go in the same directory that your script will go (/home/pi/API)
+‚Ä¢	Go to https://developers.google.com/calendar/quickstart/python click on Enable the Google Calendar API
+‚Ä¢	Click the dropdown and select ‚Äú+ Create new project‚Äù, give it a name and click next
+‚Ä¢	Now select a Product name and click next
+‚Ä¢	You will need to next click on ‚ÄúDownload client configuration‚Äù to get the ‚Äúcredentials.json‚Äù
+‚Ä¢	This file will need to go in the same directory that your script will go (/home/pi/API)
 
 You will now put the calendar-sync.py file into the /home/pi/API directory.
 
-After that you will need to change the line that has api.user.login('óTodoist usernameó', 'óTodoist password--') to include your credentials. Youíll want to include the quotes around your login and password.
+After that you will need to change the line that has api.user.login('‚ÄîTodoist username‚Äî', '‚ÄîTodoist password--') to include your credentials. You‚Äôll want to include the quotes around your login and password.
 
 Run the following command to give your new script executable permissions
 $ sudo chmod +x calendar-sync.py
 
-If you want to run a quick test you can complete something on Todoist and run. Iíve included some ìprintî statements to help you see what is actually happening on the back end.
+If you want to run a quick test you can complete something on Todoist and run. I‚Äôve included some ‚Äúprint‚Äù statements to help you see what is actually happening on the back end.
 $ sudo python calendar-sync.py
 
 I set my script to run every 3 minutes. (to constantly keep the calendar up to date) I chose to do this with a crontab entry. Open the terminal and run
 $ sudo crontab -e
 (I perferr to use nano, so I selected option 2)
 
-Then paste the following at the bottom of the file and then hold ìcontrolî and press ìxî on your keyboard to exit.
+Then paste the following at the bottom of the file and then hold ‚Äúcontrol‚Äù and press ‚Äúx‚Äù on your keyboard to exit.
 */3 * * * * python '/home/pi/API/calendar-sync.py'
