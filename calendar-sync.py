@@ -16,15 +16,15 @@ googleIDList = []
 
 #initializes API and logs in
 api = todoist.TodoistAPI()
-api.user.login('—Todoist username--', '—Todoist password--')
+api.user.login('lafayette.matt@gmail.com', 'Elements1')
 
 ####################google calendar stuff
 # Setup the Calendar API
 SCOPES = 'https://www.googleapis.com/auth/calendar'
-store = file.Storage('/home/pi/API/credentials.json')
+store = file.Storage('/home/pi/API/token.json')
 creds = store.get()
 if not creds or creds.invalid:
-    flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+    flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
     creds = tools.run_flow(flow, store)
 service = build('calendar', 'v3', http=creds.authorize(Http()))
 
@@ -57,7 +57,7 @@ print('*********************************')
 ###date parser
 def todoParser (compdate):
     cutStr = compdate[4:15]
-    correctForm = ((datetime.datetime.strptime(cutStr, "%d %b %Y"))-datetime.tim                                                                                                                                                                                                                                             edelta(1)).strftime('%Y-%m-%d')
+    correctForm = ((datetime.datetime.strptime(cutStr, "%d %b %Y"))-datetime.tim                                                                                                                                                                         edelta(1)).strftime('%Y-%m-%d')
     return(correctForm)
 
 def getItemDate(taskID):
@@ -79,6 +79,6 @@ for i in api.completed.get_all()['items']:
 for x in range (0,len(todoistList)):
     for y in range (0,len(googleList)):
         if todoistList[x]==googleList[y]:
-#            print("I matched " + googleList[y] + ":" + googleIDList[y] + " - "                                                                                                                                                                                                                                              + todoistList[x])
-            service.events().delete(calendarId='primary', eventId=googleIDList[y                                                                                                                                                                                                                                             ]).execute()
+#            print("I matched " + googleList[y] + ":" + googleIDList[y] + " - "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         + t                                                                                                                                                                         odoistList[x])
+            service.events().delete(calendarId='primary', eventId=googleIDList[y                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ]).                                                                                                                                                                         execute()
             print("I deleted " + googleList[y] + " : " + googleIDList[y])
