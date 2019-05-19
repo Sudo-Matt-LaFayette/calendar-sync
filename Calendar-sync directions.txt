@@ -29,6 +29,10 @@ Once that is done run the following command to get access to the google calendar
 $ sudo pip install --upgrade google-api-python-client oauth2client
 (Source: https://developers.google.com/calendar/quickstart/python)
 
+*If it throws errors during the above step run the two following commands and try again
+$ sudo pip install --upgrade requests
+$ sudo pip install --upgrade setuptools
+
 After the precceeding commands have been run, you will need setup authentication for Google Calendar.
 •	Go to https://developers.google.com/calendar/quickstart/python click on Enable the Google Calendar API
 •	Click the dropdown and select “+ Create new project”, give it a name and click next
