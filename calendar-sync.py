@@ -56,7 +56,7 @@ print('*********************************')
 
 ###date parser
 def todoParser (compdate):
-    cutStr = compdate[0:10]
+    cutStr = compdate[12:22]
 #    correctForm = ((datetime.datetime.strptime(cutStr, "%Y-%m-%d"))-datetime.timedelta(1)).strftime('%Y-%m-%d')
     return(cutStr)
 
@@ -67,10 +67,12 @@ def getItemDate(taskID):
 for i in api.completed.get_all()['items']:
      content = str(i['content'])
 #     contDate = str(i['completed_date'])
-     contDate = str(todoParser(i['completed_date']))
+#     contDate = str(todoParser(i['date_added']))
+     contDate = str(todoParser(str(api.items.get(i['id'])['item']['due'])))
+#     print(api.items.get(i['id'])['item']['due'])
      entry = content + " " + contDate
-     print(entry)
-     todoistList.append(entry)
+     print(entry.replace(',', ''))
+     todoistList.append(entry.replace(',', ''))
 
 #prints all elements in completed todo List
 for i in range(0,len(todoistList)):
