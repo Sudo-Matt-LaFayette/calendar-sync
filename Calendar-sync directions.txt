@@ -16,11 +16,15 @@ You will need to first create an "If This Then That" Account.
 Section II
 Now we will begin setting up the raspberry pi. 
 •	Download and install the Raspberry Pi Desktop at https://www.raspberrypi.org/downloads/
-Open the terminal and run the following commands to create our API directory get access to the todoist API
+YOU WILL NEED TO UPDATE THE PI FIRST
+Open the terminal and run the following commands to update and create our API directory get access to the todoist API
+$ sudo apt-get update
+$ sudo apt-get upgrade
 $ cd ~
 $ sudo mkdir API
 $ cd API
-$ sudo git clone git@github.com:Doist/todoist-python.git ; cd todoist-python
+$ sudo wget https://github.com/Doist/todoist-python/archive/master.zip
+$ sudo unzip master.zip
 $ sudo pip install -e .
 (Yes the period is included, this makes the "pip install -e" run inside the current directory)
 (Source: https://github.com/Doist/todoist-python)
@@ -29,7 +33,7 @@ Once that is done run the following command to get access to the google calendar
 $ sudo pip install --upgrade google-api-python-client oauth2client
 (Source: https://developers.google.com/calendar/quickstart/python)
 
-*If it throws errors during the above step run the two following commands and try again
+*If it throws errors during the above step run the two following commands and try again*
 $ sudo pip install --upgrade requests
 $ sudo pip install --upgrade setuptools
 
