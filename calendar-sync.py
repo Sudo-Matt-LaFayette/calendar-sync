@@ -16,7 +16,7 @@ googleIDList = []
 
 #initializes API and logs in
 api = todoist.TodoistAPI()
-api.user.login('lafayette.matt@gmail.com', 'Elements1')
+api.user.login('username', 'password')
 
 ####################google calendar stuff
 # Setup the Calendar API
