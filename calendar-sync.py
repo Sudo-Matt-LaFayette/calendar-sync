@@ -15,8 +15,8 @@ googleList = []
 googleIDList = []
 
 #initializes API and logs in
-api = todoist.TodoistAPI()
-api.user.login('username', 'password')
+api = todoist.TodoistAPI('68282c9b5a7c66bff4004f5afca5f483f9c3546f')
+api.user.login('lafayette.matt@gmail.com', 'Elements1')
 
 ####################google calendar stuff
 # Setup the Calendar API
@@ -43,10 +43,10 @@ if not events:
 
 ###add google items to list
 for event in events:
-    gEvent = str(event['summary'])
+    gEvent = str(event['summary'].encode('utf-8'))
     gDate = str(event["start"].get('date'))
     gMerged = gEvent + " " + gDate
-    print(gMerged)
+#    print(gMerged)
     googleList.append(gMerged)
     googleIDList.append(event['id'])
 
@@ -63,13 +63,23 @@ def todoParser (compdate):
 def getItemDate(taskID):
     return api.items.get(taskID)['item']['due']
 
+#print(dir(api.completed.get_all()['items']))
+
 #add items to todoist List
 for i in api.completed.get_all()['items']:
-     content = str(i['content'])
+     content = str(i['content'].encode('utf-8'))
 #     contDate = str(i['completed_date'])
 #     contDate = str(todoParser(i['date_added']))
-     contDate = str(todoParser(str(api.items.get(i['id'])['item']['due'])))
-#     print(api.items.get(i['id'])['item']['due'])
+#     print (api.items.due(i))
+
+    # print (api.items.get_by_id(i))
+    # contDate = str(i['completed_date'])
+#     print (i)
+#     itemid = i['task_id']
+#     print(itemid)
+#     print(api.items.get(3442978956))
+     contDate = str(todoParser(str(api.items.get(i['task_id'])['item']['due'])))
+
      entry = content + " " + contDate
      print(entry.replace(',', ''))
      todoistList.append(entry.replace(',', ''))
