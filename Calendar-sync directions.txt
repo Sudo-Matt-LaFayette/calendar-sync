@@ -25,6 +25,7 @@ $ sudo mkdir API
 $ cd API
 $ sudo wget https://github.com/Doist/todoist-python/archive/master.zip
 $ sudo unzip master.zip
+$ cd todoist-python-master
 $ sudo pip install -e .
 (Yes the period is included, this makes the "pip install -e" run inside the current directory)
 (Source: https://github.com/Doist/todoist-python)
