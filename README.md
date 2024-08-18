@@ -1,5 +1,5 @@
 # calendar-sync
-Sure, here's a detailed explanation of the "calendar-sync" repository with GitHub emojis:
+Sure, here's a detailed explanation of the "calendar-sync" repository:
 
 ### 📂 Files and Structure:
 - **`calendar-sync.py`**: The main script responsible for the synchronization process.
